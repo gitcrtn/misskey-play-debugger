@@ -3,6 +3,7 @@
 ## 概要
 aiscript playgroundでmisskey play用のコードを実行可能にしました。  
 UiライブラリによるUI表示とMkライブラリの利用が可能です。  
+Mk:api()はMock機能を利用可能です。  
 
 ## フォーク元
 * misskey v13.2.5
@@ -17,12 +18,24 @@ yarn
 yarn dev
 ```
 
+## API Mockの使い方
+以下のようにjsonで定義したレスポンスでモックされます。  
+パラメータ引数がMk:api()で指定された場合は、  
+パラメータのキーがあればその値をレスポンスとして返します。  
+```
+{
+    "path/to/api": ["response"],
+    "path/to/api-per-param": {
+        "paramA": "responseA",
+        "paramB": ["responseB"]
+    }
+}
+```
+
 ## 注意点
 * 静的ビルド(yarn build)に対応していません。  
 静的ビルドしたページで絵文字ありのaiscriptをRUNすると、UNI_EMOJIのエラーが出ることを確認しています。
 * Uiを使用したコードをRUNした後に再度RUNする場合はページのリロードが必要です。
-* API Mockは未実装です。  
-MkライブラリによるAPI利用のモックに対応させる予定です。
 * 一部のダイアログ表示（osモジュールの差し替え）が未実装です。
 * misskeyのAPIアクセスを全て無効にしています。
 * カスタム絵文字に対応していません。  

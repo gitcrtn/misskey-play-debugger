@@ -1,3 +1,4 @@
+import { has, isPlainObject } from 'lodash';
 import { utils, values } from '@syuilo/aiscript';
 //import * as os from '@/os';
 //import { $i } from '@/account';
@@ -44,7 +45,23 @@ export function createAiScriptEnv(opts) {
 			apiRequests++;
 			if (apiRequests > 16) return values.NULL;
 			//const res = await os.api(ep.value, utils.valToJs(param), token ? token.value : (opts.token ?? null));
-			const res = [];
+			let mock = null;
+			try{
+				mock = JSON.parse(opts.mockAPI.value);
+			}
+			catch
+			{
+			}
+			const path = ep.value;
+			let res = {};
+			if (mock && has(mock, path)) {
+				const paramJs = utils.valToJs(param);
+				if (isPlainObject(mock[path]) && has(mock[path], paramJs)) {
+					res = mock[path][paramJs];
+				} else {
+					res = mock[path];
+				}
+			}
 			return utils.jsToVal(res);
 		}),
 		'Mk:save': values.FN_NATIVE(([key, value]) => {

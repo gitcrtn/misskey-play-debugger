@@ -33,9 +33,13 @@
 			</div>
 		</div>
 		<div id="mockAPI" class="container">
-			<header>API Mock</header>
+			<header>API Mock<div class="actions"><button @click="setMockAPI">Example</button></div></header>
 			<div>
+				<PrismEditor class="code" v-model="mockAPI" :highlight="highlighter" :line-numbers="false"/>
 			</div>
+			<footer>
+				<span v-if="isMockAPISyntaxError" class="syntaxError">Syntax Error!</span>
+			</footer>
 		</div>
 	</div>
 </div>
@@ -59,11 +63,23 @@ import 'prismjs/themes/prism-okaidia.css';
 
 setupMisskey();
 
+const exampleMockAPI = `{
+	"path/to/api": ["response"],
+	"path/to/api-per-param": {
+		"paramA": "responseA",
+		"paramB": ["responseB"]
+	},
+	"notes/local-timeline": [],
+	"emojis": {}
+}`;
+
 const script = ref(window.localStorage.getItem('script') || '<: "Hello, AiScript!"');
+const mockAPI = ref(window.localStorage.getItem('mockAPI') || exampleMockAPI);
 
 const ast = ref(null);
 const logs = ref([]);
 const isSyntaxError = ref(false);
+const isMockAPISyntaxError = ref(false);
 
 const rootUi = ref<AsUiRoot>();
 const componentsUi: Ref<AsUiComponent>[] = ref([]);
@@ -82,6 +98,20 @@ watch(script, () => {
 	immediate: true
 });
 
+watch(mockAPI, () => {
+	window.localStorage.setItem('mockAPI', mockAPI.value);
+	try {
+		JSON.parse(mockAPI.value);
+		isMockAPISyntaxError.value = false;
+	} catch (e) {
+		isMockAPISyntaxError.value = true;
+		console.error(e);
+		return;
+	}
+}, {
+	immediate: true
+});
+
 const setCode = () => {
 	script.value = `for (let i, 100) {
   <: if (i % 15 == 0) "FizzBuzz"
@@ -91,12 +121,17 @@ const setCode = () => {
 }`;
 };
 
+const setMockAPI = () => {
+	mockAPI.value = exampleMockAPI;
+};
+
 const run = async () => {
 	logs.value = [];
 
 	const interpreter = new Interpreter({
 		...createAiScriptEnv({
 			storageKey: 'flash:playground',
+			mockAPI: mockAPI,
 		}),
 		...registerAsUiLib(componentsUi.value, (_root) => {
 			rootUi.value = _root.value;
@@ -228,6 +263,16 @@ pre {
 
 #ast {
 
+}
+
+#mockAPI {
+}
+#mockAPI > .code {
+	box-sizing: border-box;
+	padding: 16px;
+}
+#mockAPI .syntaxError {
+	color: #f00;
 }
 
 .container {
