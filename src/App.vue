@@ -26,13 +26,14 @@
 				<pre>{{ JSON.stringify(ast, null, '\t') }}</pre>
 			</div>
 		</div>
-		<div id="bin" class="container">
-			<header>Bytecode</header>
+		<div id="rootUi" class="container">
+			<header>UI</header>
 			<div>
+				<MkAsUi v-if="rootUi" :component="rootUi" :components="componentsUi" size="medium" align="center"/>
 			</div>
 		</div>
-		<div id="debugger" class="container">
-			<header>Debugger</header>
+		<div id="mockAPI" class="container">
+			<header>API Mock</header>
 			<div>
 			</div>
 		</div>
@@ -40,9 +41,12 @@
 </div>
 </template>
 
-<script setup>
-import { ref, watch } from 'vue';
+<script lang="ts" setup>
+import { Ref, ref, watch } from 'vue';
 import { Interpreter, Parser, utils, serialize } from '@syuilo/aiscript';
+import { AsUiComponent, AsUiRoot, patch, registerAsUiLib, render } from './misskey/scripts/aiscript/ui';
+import MkAsUi from './misskey/MkAsUi.vue';
+import { setupMisskey } from './setup';
 
 import { PrismEditor } from 'vue-prism-editor';
 import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -52,11 +56,16 @@ import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism-okaidia.css';
 
+setupMisskey();
+
 const script = ref(window.localStorage.getItem('script') || '<: "Hello, AiScript!"');
 
 const ast = ref(null);
 const logs = ref([]);
 const isSyntaxError = ref(false);
+
+const rootUi = ref<AsUiRoot>();
+const componentsUi: Ref<AsUiComponent>[] = ref([]);
 
 watch(script, () => {
 	window.localStorage.setItem('script', script.value);
@@ -84,7 +93,11 @@ const setCode = () => {
 const run = async () => {
 	logs.value = [];
 
-	const interpreter = new Interpreter({}, {
+	const interpreter = new Interpreter({
+		...registerAsUiLib(componentsUi.value, (_root) => {
+			rootUi.value = _root.value;
+		}),
+	}, {
 		in: (q) => {
 			return new Promise(ok => {
 				const res = window.prompt(q);
