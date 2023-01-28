@@ -33,8 +33,9 @@ stream.on('emojiDeleted', emojiData => {
 export async function fetchCustomEmojis(force = false) {
 	const now = Date.now();
 
-	let res;
+	let res = {'emojis': {}};
 	/*
+	let res;
 	if (force) {
 		res = await api('emojis', {});
 	} else {

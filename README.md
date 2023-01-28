@@ -2,7 +2,7 @@
 
 ## 概要
 aiscript playgroundでmisskey play用のコードを実行可能にしました。  
-UiライブラリによるUI表示が可能です。  
+UiライブラリによるUI表示とMkライブラリの利用が可能です。  
 
 ## フォーク元
 * misskey v13.2.5

@@ -45,6 +45,7 @@
 import { Ref, ref, watch } from 'vue';
 import { Interpreter, Parser, utils, serialize } from '@syuilo/aiscript';
 import { AsUiComponent, AsUiRoot, patch, registerAsUiLib, render } from './misskey/scripts/aiscript/ui';
+import { createAiScriptEnv } from './misskey/scripts/aiscript/api';
 import MkAsUi from './misskey/MkAsUi.vue';
 import { setupMisskey } from './setup';
 
@@ -94,6 +95,9 @@ const run = async () => {
 	logs.value = [];
 
 	const interpreter = new Interpreter({
+		...createAiScriptEnv({
+			storageKey: 'flash:playground',
+		}),
 		...registerAsUiLib(componentsUi.value, (_root) => {
 			rootUi.value = _root.value;
 		}),
