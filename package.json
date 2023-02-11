@@ -10,7 +10,7 @@
     "@discordapp/twemoji": "^14.0.2",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/pluginutils": "^5.0.2",
-    "@syuilo/aiscript": "^0.12.2",
+    "@syuilo/aiscript": "^0.12.4",
     "broadcast-channel": "^4.20.2",
     "eventemitter3": "^5.0.0",
     "js-yaml": "^4.1.0",

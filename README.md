@@ -7,7 +7,7 @@ Mk:api()はMock機能を利用可能です。
 
 ## フォーク元
 * misskey v13.2.5
-* aiscript v0.12.2
+* aiscript v0.12.4
 
 ## 実行方法
 以下を実行後に http://localhost:3000/aiscript/ をWebブラウザで開いてください。
