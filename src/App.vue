@@ -5,7 +5,7 @@
 		<div id="editor" class="container">
 			<header>Input<div class="actions"><button @click="setCode">FizzBuzz</button></div></header>
 			<div>
-				<PrismEditor class="code" v-model="script" :highlight="highlighter" :line-numbers="false"/>
+				<PrismEditor class="code" v-model="script" :highlight="highlighter" :line-numbers="lineNumbers"/>
 			</div>
 			<footer>
 				<span v-if="isSyntaxError" class="syntaxError">Syntax Error!</span>
@@ -86,6 +86,8 @@ const isMockAPISyntaxError = ref(false);
 
 const rootUi = ref<AsUiRoot>();
 const componentsUi: Ref<AsUiComponent>[] = ref([]);
+
+const lineNumbers = true;
 
 watch(script, () => {
 	window.localStorage.setItem('script', script.value);
