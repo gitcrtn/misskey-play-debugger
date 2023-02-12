@@ -32,6 +32,15 @@ yarn dev
 }
 ```
 
+## Linter
+Lintボタンをクリックするとコードを静的解析できます。  
+以下のエラーに対応しています。  
+| No. | Error | 説明 |
+| --- | ----- | ---- |
+| E0001 | unknown-function | 未定義の関数が呼び出されています |
+| E0002 | no-value-for-function-args | 関数呼び出しの引数の数が足りません |
+| E0003 | too-many-function-args | 関数呼び出しの引数が多すぎています |
+
 ## 注意点
 * 静的ビルド(yarn build)に対応していません。  
 静的ビルドしたページで絵文字ありのaiscriptをRUNすると、UNI_EMOJIのエラーが出ることを確認しています。

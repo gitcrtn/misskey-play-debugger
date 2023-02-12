@@ -9,7 +9,8 @@
 			</div>
 			<footer>
 				<span v-if="isSyntaxError" class="syntaxError">Syntax Error!</span>
-				<div class="actions"><button @click="run">RUN</button></div>
+				<div class="actions"><button @click="lint">Lint</button></div>
+				<div class="actions-right"><button @click="run">RUN</button></div>
 			</footer>
 		</div>
 		<div id="logs" class="container">
@@ -52,6 +53,7 @@ import { AsUiComponent, AsUiRoot, patch, registerAsUiLib, render } from './missk
 import { createAiScriptEnv } from './misskey/scripts/aiscript/api';
 import MkAsUi from './misskey/MkAsUi.vue';
 import { setupMisskey } from './setup';
+import { lintAst } from './linter';
 
 import { PrismEditor } from 'vue-prism-editor';
 import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -60,6 +62,7 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism-okaidia.css';
+import { each } from 'lodash';
 
 setupMisskey();
 
@@ -169,6 +172,22 @@ const run = async () => {
 		console.error(e);
 		window.alert('Error: ' + e);
 	}
+}
+
+const pushTextLog = text => {
+	logs.value.push({
+		id: Math.random(),
+		type: 'str',
+		text: text,
+		print: true
+	});
+}
+
+const lint = () => {
+	pushTextLog('=== start lint ===');
+	const result = lintAst(script.value, ast.value);
+	each(result, pushTextLog);
+	pushTextLog('=== end lint ===');
 }
 
 const highlighter = code => {
@@ -303,5 +322,8 @@ pre {
 }
 .container > footer > .actions {
 	margin-left: auto;
+}
+.container > footer > .actions-right {
+	margin-left: 16px;
 }
 </style>
