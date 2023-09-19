@@ -25,6 +25,7 @@
     "sass": "^1.57.1",
     "throttle-debounce": "^5.0.0",
     "tinycolor2": "^1.5.2",
+    "uuid": "^9.0.1",
     "vue": "^3.0.5",
     "vue-prism-editor": "^2.0.0-alpha.2"
   },
