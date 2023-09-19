@@ -1,0 +1,40 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: 20.x
+
+      - name: AiScript Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      - name: AiScript Install dependencies
+        run: npm ci
+
+      - name: AiScript Build
+        run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main  ' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
