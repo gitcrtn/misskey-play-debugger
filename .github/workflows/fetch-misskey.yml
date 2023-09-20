@@ -1,0 +1,40 @@
+name: fetch-misskey
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.0.0
+
+      - name: mkdir
+        run: |
+          mkdir -p fetch/misskey
+
+      - name: clone
+        working-directory: ./fetch/misskey
+        run: |
+          git init
+          git config core.sparsecheckout true
+          git remote add origin https://github.com/misskey-dev/misskey.git
+          cp ../../files-misskey ./.git/info/sparse-checkout
+          git pull origin develop
+          rm -rf .git
+          mkdir -p ../../fetched
+          find . -type f -exec cp {} ../../fetched \;
+
+      - name: pr
+        run: |
+          git config --global user.email "none"
+          git config --global user.name "bot"
+          git switch -c fetch
+          git add fetched
+          git commit -m'fetch misskey'
+          git push -u origin fetch
