@@ -33,9 +33,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Modify Vite config
-        if: ${{ github.ref == 'refs/heads/main' }}
-        run: "sed -i $'42 i \"base: \\'/aiscript/\\',\"' vite.config.ts"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
