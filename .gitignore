@@ -48,9 +48,6 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-/test-results/
-/playwright-report/
-/playwright/.cache/
 
 # used by Actions
 /fetch/
