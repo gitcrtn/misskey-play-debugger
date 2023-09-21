@@ -39,7 +39,6 @@ function toBase62(n: number): string {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: '/aiscript/',
   plugins: [
     pluginVue({
       reactivityTransform: true,
