@@ -4,18 +4,23 @@
 aiscript playgroundでmisskey play用のコードを実行可能にしました。  
 UiライブラリによるUI表示とMkライブラリの利用が可能です。  
 Mk:api()はMock機能を利用可能です。  
+### フォークの変更
+* Github Pagesで利用可能に（未調査だが後述の絵文字使用時のエラーがある？）
+* yarnからnpmに
+* AiScriptのバージョンを更新
+* Linterを廃止
 
-## フォーク元
+## 使用バージョン
 * misskey v13.2.5
-* aiscript v0.12.4
+* aiscript v0.16.0
 
-## 実行方法
-以下を実行後に http://localhost:3000/aiscript/ をWebブラウザで開いてください。
+## ローカルで実行
+以下を実行後に表示されるURLをWebブラウザで開いてください。
 ```
 git clone https://github.com/gitcrtn/misskey-play-debugger.git
 cd misskey-play-debugger
-yarn
-yarn dev
+npm ci
+npm run dev
 ```
 
 ## API Mockの使い方
@@ -31,15 +36,6 @@ yarn dev
     }
 }
 ```
-
-## Linter
-Lintボタンをクリックするとコードを静的解析できます。  
-以下のエラーに対応しています。  
-| No. | Error | 説明 |
-| --- | ----- | ---- |
-| E0001 | unknown-function | 未定義の関数が呼び出されています |
-| E0002 | no-value-for-function-args | 関数呼び出しの引数の数が足りません |
-| E0003 | too-many-function-args | 関数呼び出しの引数が多すぎています |
 
 ## 注意点
 * 静的ビルド(yarn build)に対応していません。  
