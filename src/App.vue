@@ -5,11 +5,10 @@
 		<div id="editor" class="container">
 			<header>Input<div class="actions"><button @click="setCode">FizzBuzz</button></div></header>
 			<div>
-				<PrismEditor class="code" v-model="script" :highlight="highlighter" :line-numbers="lineNumbers"/>
+				<PrismEditor class="code" v-model="script" :highlight="highlighter" :line-numbers="false"/>
 			</div>
 			<footer>
 				<span v-if="isSyntaxError" class="syntaxError">Syntax Error!</span>
-				<div class="actions"><button @click="lint">Lint</button></div>
 				<div class="actions-right"><button @click="run">RUN</button></div>
 			</footer>
 		</div>
@@ -48,12 +47,11 @@
 
 <script lang="ts" setup>
 import { Ref, ref, watch } from 'vue';
-import { Interpreter, Parser, utils, serialize } from '@syuilo/aiscript';
+import { Interpreter, Parser, utils } from '@syuilo/aiscript';
 import { AsUiComponent, AsUiRoot, patch, registerAsUiLib, render } from './misskey/scripts/aiscript/ui';
 import { createAiScriptEnv } from './misskey/scripts/aiscript/api';
 import MkAsUi from './misskey/MkAsUi.vue';
 import { setupMisskey } from './setup';
-import { lintAst } from './linter';
 
 import { PrismEditor } from 'vue-prism-editor';
 import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -86,8 +84,6 @@ const isMockAPISyntaxError = ref(false);
 
 const rootUi = ref<AsUiRoot>();
 const componentsUi: Ref<AsUiComponent>[] = ref([]);
-
-const lineNumbers = true;
 
 watch(script, () => {
 	window.localStorage.setItem('script', script.value);
@@ -183,13 +179,6 @@ const pushTextLog = text => {
 		text: text,
 		print: true
 	});
-}
-
-const lint = () => {
-	pushTextLog('=== start lint ===');
-	const result = lintAst(script.value, ast.value);
-	each(result, pushTextLog);
-	pushTextLog('=== end lint ===');
 }
 
 const highlighter = code => {
