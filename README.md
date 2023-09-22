@@ -5,7 +5,7 @@ aiscript playgroundでmisskey play用のコードを実行可能にしました�
 UiライブラリによるUI表示とMkライブラリの利用が可能です。  
 Mk:api()はMock機能を利用可能です。  
 ### フォークの変更
-* Github Pagesで利用可能に（未調査だが後述の絵文字使用時のエラーがある？）
+* Github Pagesで利用可能に（未確認だが後述の絵文字使用時のエラーがある？）
 * yarnからnpmに
 * AiScriptのバージョンを更新
 * Linterを廃止
