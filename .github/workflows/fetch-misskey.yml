@@ -14,10 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.0.0
 
+      - name: clean
+        run: |
+          rm -rf src/misskey
+          mkdir src/misskey
+
       - name: clone
         working-directory: src/misskey
         run: |
-          rm -rf ./{*,.*}
           git init
           git config core.sparsecheckout true
           git remote add origin https://github.com/misskey-dev/misskey.git
