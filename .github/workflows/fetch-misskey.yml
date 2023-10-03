@@ -39,12 +39,14 @@ jobs:
           git config --global user.name "bot"
 
       - name: Create fetch branch
+        run: |
           git switch -c fetch
           git add src/misskey/packages
           git commit -m'fetch misskey'
           git push -f -u origin fetch
 
       - name: Create fetch-locales branch
+        run: |
           git switch -c fetch-locales "${GIT_BRANCH_NAME}"
           git add src/misskey/locales
           git commit -m'fetch misskey-locales'
