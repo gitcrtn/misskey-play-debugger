@@ -1,56 +1,45 @@
-#mfm.ts seems to be deleted?
-packages/
-	meta.json
-packages/frontend/src/
-	config.ts
-	custom-emojis.ts
-	emojilist.json
-	events.ts
-	local-storage.ts
-	pizzax.ts
-	store.ts
-packages/frontend/src/components/global/
-	MkA.vue
-	MkCustomEmoji.vue
-	MkEmoji.vue
-	MkMisskeyFlavoredMarkdown.vue
-	MkSpacer.vue
-	MkUrl.vue
-	i18n.ts
-packages/frontend/src/components/
-	MkAsUi.vue
-	MkButton.vue
-	MkCode.core.vue
-	MkCode.vue
-	MkFolder.vue
-	MkGoogle.vue
-	MkInput.vue
-	MkLink.vue
-	MkMention.vue
-	MkSelect.vue
-	MkSparkle.vue
-	MkSwitch.vue
-	MkTextarea.vue
-#locales
+packages/meta.json
+packages/frontend/src/config.ts
+packages/frontend/src/custom-emojis.ts
+packages/frontend/src/emojilist.json
+packages/frontend/src/events.ts
+packages/frontend/src/local-storage.ts
+packages/frontend/src/pizzax.ts
+packages/frontend/src/store.ts
+packages/frontend/src/components/global/MkA.vue
+packages/frontend/src/components/global/MkCustomEmoji.vue
+packages/frontend/src/components/global/MkEmoji.vue
+packages/frontend/src/components/global/MkMisskeyFlavoredMarkdown.vue
+packages/frontend/src/components/global/MkSpacer.vue
+packages/frontend/src/components/global/MkUrl.vue
+packages/frontend/src/components/global/i18n.ts
+packages/frontend/src/components/MkAsUi.vue
+packages/frontend/src/components/MkButton.vue
+packages/frontend/src/components/MkCode.core.vue
+packages/frontend/src/components/MkCode.vue
+packages/frontend/src/components/MkFolder.vue
+packages/frontend/src/components/MkGoogle.vue
+packages/frontend/src/components/MkInput.vue
+packages/frontend/src/components/MkLink.vue
+packages/frontend/src/components/MkMention.vue
+packages/frontend/src/components/MkSelect.vue
+packages/frontend/src/components/MkSparkle.vue
+packages/frontend/src/components/MkSwitch.vue
+packages/frontend/src/components/MkTextarea.vue
 locales/
-	*
-#scripts
-packages/frontend/src/scripts/
-	aiscript/*
-	clone.ts
-	copy-to-clipboard.ts
-	device-kind.ts
-	emoji-base.ts
-	emojilist.ts
-	i18n.ts
-	media-proxy.ts
-	mfm-tags.ts
-	popout.ts
-	safe-uri-decode.ts
-	theme.ts
-	url.ts
-	use-interval.ts
-	use-tooltip.ts
-#themes
+packages/frontend/src/scripts/aiscript/
+packages/frontend/src/scripts/clone.ts
+packages/frontend/src/scripts/copy-to-clipboard.ts
+packages/frontend/src/scripts/device-kind.ts
+packages/frontend/src/scripts/emoji-base.ts
+packages/frontend/src/scripts/emojilist.ts
+packages/frontend/src/scripts/i18n.ts
+packages/frontend/src/scripts/media-proxy.ts
+packages/frontend/src/scripts/mfm-tags.ts
+packages/frontend/src/scripts/popout.ts
+packages/frontend/src/scripts/safe-uri-decode.ts
+packages/frontend/src/scripts/theme.ts
+packages/frontend/src/scripts/url.ts
+packages/frontend/src/scripts/use-interval.ts
+packages/frontend/src/scripts/use-tooltip.ts
 packages/frontend/src/themes/
-	*
