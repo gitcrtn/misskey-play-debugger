@@ -1,4 +1,5 @@
 REPOPREFIX='https://raw.githubusercontent.com/misskey-dev/misskey/develop/'
+# WIP
 PREFIX='./src/misskey/'
 while read -r input; do
 	echo $(printf %.1s $input)
