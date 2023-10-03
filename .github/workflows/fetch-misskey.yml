@@ -40,7 +40,7 @@ jobs:
           git switch -c fetch
           git add src
           git commit -m'fetch misskey'
-          git push -u origin fetch
+          git push -f -u origin fetch
 
       - name: Create Pull Request
         continue-on-error: true
