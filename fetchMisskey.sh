@@ -1,14 +1,9 @@
-REPOPREFIX='https://raw.githubusercontent.com/misskey-dev/misskey/develop/'
-# WIP
-PREFIX='./src/misskey/'
-while read -r input; do
-	echo $(printf %.1s $input)
-	if [ $(printf %.1s $input) = '#' ]; then
-		echo $input
-	elif [ $(printf %.1s $input) = $'\t' ]; then
-		echo $input
-		curl $REPOPREFIX$path$input -o $PREFIX$path$input
-	else
-		path=$input
-	fi
-done < "files-misskey"
+REPO=https://github.com/misskey-dev/misskey.git
+BRANCH=develop
+rm -rf src/misskey
+git clone --filter=blob:none --no-checkout --branch=$BRANCH $REPO src/misskey
+cd src/misskey
+git config core.sparsecheckout true
+cp ../../files-misskey ./.git/info/sparse-checkout
+git checkout
+rm -rf .git

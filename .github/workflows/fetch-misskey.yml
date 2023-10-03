@@ -14,21 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.0.0
 
-      - name: clean
+      - name: Fetch
         run: |
-          rm -rf src/misskey
-          mkdir src/misskey
-
-      - name: clone
-        working-directory: src/misskey
-        run: |
-          git init
-          git config core.sparsecheckout true
-          git remote add origin https://github.com/misskey-dev/misskey.git
-          cp ../../files-misskey ./.git/info/sparse-checkout
-          git pull origin develop
-          rm -rf .git
-
+          sh fetchMisskey.sh
       - name: Branch name
         id: git-branch-name
         uses: EthanSK/git-branch-name-action@v1
