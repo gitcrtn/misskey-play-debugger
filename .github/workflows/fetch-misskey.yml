@@ -33,7 +33,7 @@ jobs:
         id: git-branch-name
         uses: EthanSK/git-branch-name-action@v1
 
-      - name: pr
+      - name: Create branch
         run: |
           git config --global user.email "none"
           git config --global user.name "bot"
