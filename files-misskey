@@ -1,1 +1,56 @@
-packages/frontend/src/components/MkAsUi.vue
+#mfm.ts seems to be deleted?
+packages/
+	meta.json
+packages/frontend/src/
+	config.ts
+	custom-emojis.ts
+	emojilist.json
+	events.ts
+	local-storage.ts
+	pizzax.ts
+	store.ts
+packages/frontend/src/components/global/
+	MkA.vue
+	MkCustomEmoji.vue
+	MkEmoji.vue
+	MkMisskeyFlavoredMarkdown.vue
+	MkSpacer.vue
+	MkUrl.vue
+	i18n.ts
+packages/frontend/src/components/
+	MkAsUi.vue
+	MkButton.vue
+	MkCode.core.vue
+	MkCode.vue
+	MkFolder.vue
+	MkGoogle.vue
+	MkInput.vue
+	MkLink.vue
+	MkMention.vue
+	MkSelect.vue
+	MkSparkle.vue
+	MkSwitch.vue
+	MkTextarea.vue
+#locales
+locales/
+	*
+#scripts
+packages/frontend/src/scripts/
+	aiscript/*
+	clone.ts
+	copy-to-clipboard.ts
+	device-kind.ts
+	emoji-base.ts
+	emojilist.ts
+	i18n.ts
+	media-proxy.ts
+	mfm-tags.ts
+	popout.ts
+	safe-uri-decode.ts
+	theme.ts
+	url.ts
+	use-interval.ts
+	use-tooltip.ts
+#themes
+packages/frontend/src/themes/
+	*
